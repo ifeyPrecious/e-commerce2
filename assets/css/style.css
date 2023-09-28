@@ -4,6 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  text-decoration: none;
 }
 .nav-buttons {
   margin-left: 60%;
@@ -82,9 +83,9 @@ h6 {
 }
 
 #home {
-  background-image: url("../imgs/fashion-3179178_1920.jpg");
+ background-image: url("../imgs/c.jpg");
   width: 100%;
-  height: 100vh;
+  height: 90vh;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -232,7 +233,7 @@ hr {
 }
 /* banner--------------------- */
 #banner {
-  background-image: url("../imgs/brewers-blackbird-8215850_1920.jpg");
+  background-image: url("../imgs/b.jpg");
   width: 100%;
   height: 60vh;
   background-size: cover;
@@ -319,13 +320,14 @@ hr {
   flex-basis: 24%;
   cursor: pointer;
 }
-.single-product input {
+ .single-product input {
   width: 50px;
   height: 40px;
   padding-left: 10px;
   font-size: 16px;
   margin-right: 10px;
 }
+ 
 .single-product input:focus {
   outline: none;
 }
@@ -368,11 +370,19 @@ hr {
   color: #fb774b;
   text-decoration: none;
   font-size: 14px;
+  background: none;
+  border: none;
+  width: 100%;
 }
+
+
+
 .cart .edit-btn {
   color: #fb774b;
   text-decoration: none;
   font-size: 15px;
+ border: none;
+ background-color: white;
 }
 .cart .product-info p {
   margin: 3px;
@@ -383,6 +393,9 @@ hr {
   padding-left: 10px;
   font-size: 16px;
   margin-right: 10px;
+   background: rgb(187, 184, 184);
+   border: none;
+  
 }
 .cart input:focus {
   outline: none;

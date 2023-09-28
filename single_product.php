@@ -1,6 +1,29 @@
+<?php 
+ include('server/connection.php');
+       
+       if(isset($_GET['product_id'])) {
+
+        $product_id = $_GET['product_id'];
+
+        $stmt = $conn->prepare("SELECT * FROM products WHERE product_id = ?");
+
+        $stmt->bind_param("i", $product_id);
+
+        $stmt->execute();
+
+        $product= $stmt->get_result(); 
+
+   } else{
+    
+    header('location:index.php');
+
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -53,36 +76,54 @@
     <!-- single product -->
     <section class="container single-product my-5 pt-5">
         <div class="row my-5">
+            <?php  while($row= $product->fetch_assoc()) { ?>
+        
+
+
             <div class="col-lg-5 col-md-6 col-sm-12">
-                <img class="img-fluid w-100 pb-1" src="./assets/imgs/rose-165819_1920.jpg" id="mainImg" alt="">
+                <img class="img-fluid w-100 pb-1" src="./assets/imgs/<?php echo $row['product_image']; ?>" id="mainImg" alt="Image">
                 <div class="small-img-group">
                     <div class="small-img-col">
-                        <img src="./assets/imgs/fashion-3179178_1920.jpg" width="100%" class="small-img" alt="">
+                        <img src="./assets/imgs/<?php echo $row['product_image']; ?>" width="100%" class="small-img" alt="">
                     </div>
                     <div class="small-img-col">
-                        <img src="./assets/imgs/girl-1141279_1920.jpg" width="100%" class="small-img" alt="">
+                        <img src="./assets/imgs/<?php echo $row['product_image2']; ?>" width="100%" class="small-img" alt="">
                     </div>
                     <div class="small-img-col">
-                        <img src="./assets/imgs/flowers-7768218_1920.jpg" width="100%" class="small-img" alt="">
+                        <img src="./assets/imgs/<?php echo $row['product_image3']; ?>" width="100%" class="small-img" alt="">
                     </div>
                     <div class="small-img-col">
-                        <img src="./assets/imgs/girl-1141279_1920.jpg" width="100%" class="small-img" alt="">
+                        <img src="./assets/imgs/<?php echo $row['product_image4']; ?>" width="100%" class="small-img" alt="">
                     </div>
                 </div>
             </div>
+
+
             <div class="col-lg-6 col-md-12 col-sm-12">
-                <h6>Men/Shoes</h6>
-                <h3 class="py-4">Mens Fashion</h3>
-                <h2>#2000</h2>
-                <input type="number" value="1">
-                <button class="buy-btn">Add To Cart</button>
+                <h6><?php echo $row['product_category']; ?></h6>
+                <h3 class="py-4"><?php echo $row['product_name']; ?></h3>
+                <h2><?php echo $row['product_price']; ?> </h2>
+
+    <form  method="POST" action="cart.php">
+            <input type="hidden" name="product_id" value="<?php echo $row['product_id']; ?>">
+            <input type="hidden" name="product_image" value="<?php echo $row['product_image']; ?>">
+            <input type="hidden" name="product_name" value="<?php echo $row['product_name']; ?>">
+            <input type="hidden" name="product_price" value="<?php echo $row['product_price']; ?>">
+            <input type="number" name="product_quantity" value="1">
+            <button class="buy-btn" type="submit" name="add_to_cart">Add To Cart</button>
+    </form>
+
+               
                 <h4 class="mt-5 mb-5">Product Details</h4>
-                <span>The details of this prduct will be displayed shortly
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde, nulla nesciunt ipsum ea accusamus
-                    ipsa tempore? Impedit fugiat maxime, temporibus cum culpa quia itaque odio dolorem? Magni dolore
-                    laudantium autem!
+                <span><?php echo $row['product_description']; ?>
                 </span>
             </div>
+
+        
+
+            <?php } ?>
+
+            
         </div>
     </section>
 
