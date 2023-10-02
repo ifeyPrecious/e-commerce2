@@ -388,13 +388,13 @@ hr {
   margin: 3px;
 }
 .cart input {
-  width: 50px;
+  width: 100px;
   height: 40px;
   padding-left: 10px;
   font-size: 16px;
   margin-right: 10px;
-   background: rgb(187, 184, 184);
-   border: none;
+  background-color: #fb774b;
+  border: none;
   
 }
 .cart input:focus {
@@ -422,11 +422,6 @@ th:last-child {
     display: flex;
     justify-content: flex-end;
   
-}
-.checkout-btn{
-    background-color: orangered;
-    color: #d8d8d8;
-    margin-top: 10px;
 }
 
 /* login--------------------- */

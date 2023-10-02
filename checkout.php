@@ -1,3 +1,26 @@
+<?php 
+
+session_start();  
+
+if( !empty($_SESSION['cart']) && isset($_POST['checkout'])) {
+    // let user in
+
+
+
+
+ //send user to home page   
+}else{
+
+
+header('Location: index.php');
+
+}
+
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,7 +82,7 @@
             <hr class="mx-auto">
         </div>
         <div class="mx-auto container">
-            <form id="checkout-form">
+            <form id="checkout-form" action= "server/place_order.php" method="POST"> 
                 <div class="form-group py-2 checkout-small-element">
                     <label for="">Name</label>
                     <input type="text" class="form-control" id="checkout-name" name="name" placeholder="Name" required>
@@ -70,10 +93,15 @@
                         required>
                 </div>
                 <div class="form-group py-2 checkout-small-element">
-                    <label for="">phone</label>
-                    <input type="tel" class="form-control" id="checkout-phone" name="password" placeholder="Password"
+                    <label for="">Phone nunber</label>
+                    <input type="tel" class="form-control" id="checkout-phone" name="phone" placeholder="Phone"
                         required>
                 </div>
+                <!-- <div class="form-group py-2 checkout-small-element">
+                    <label for="">Password</label>
+                    <input type="tel" class="form-control" id="checkout-phone" name="password" placeholder="Password"
+                        required>
+                </div> -->
                 <div class="form-group py-2 checkout-small-element">
                     <label for="">City</label>
                     <input type="text" class="form-control" id="checkout-city" name="city" placeholder="city" required>
@@ -84,7 +112,8 @@
                         required>
                 </div>
                 <div class="form-group py-2 checkout-btn-container">
-                    <input type="submit" class="btn" id="checkout-btn" value="Checkout">
+                    <p>Total amount: $ <?php echo $_SESSION['total']; ?> </p>
+                    <input type="submit" class="btn" id="checkout-btn" name= "place_order" value="Place Order">
                 </div>
 
             </form>

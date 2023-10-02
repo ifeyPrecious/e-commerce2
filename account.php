@@ -13,10 +13,9 @@
 
 <body>
 
-    <!-- THE NAVIGATION BAR -->
-	<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top py-3 ">
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top py-3 ">
 		<div class="container">
-			<img src="https://logos.textgiraffe.com/logos/logo-name/Precious-designstyle-smoothie-m.png" class="logo"
+		<img src="https://logos.textgiraffe.com/logos/logo-name/Precious-designstyle-smoothie-m.png"
 				width="100px" height="30px" alt="logo">
 			<div class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,10 +25,10 @@
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
 					<li class="nav-item">
-						<a class="nav-link" href="index.html">Home</a>
+						<a class="nav-link" href="index.php">Home</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="shop.html">shop</a>
+						<a class="nav-link" href="shop.php">shop</a>
 					</li>
 
 					<li class="nav-item">
@@ -37,19 +36,20 @@
 					</li>
 
 					<li class="nav-item">
-						<a class="nav-link" href="contact.html">Contact Us</a>
+						<a class="nav-link" href="contact.php">Contact Us</a>
 					</li>
 
 
 					<li class="nav-item">
-						<a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
-						<a href="account.html"><i class="fa-solid fa-user"></i></a>
+						<a href="cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
+						<a href="account.php"><i class="fa-solid fa-user"></i></a>
 
 					</li>
 				</ul>
 			</div>
 		</div>
 	</nav>
+
 
     <!-- Account -->
     <section class="my-5 py-5">
