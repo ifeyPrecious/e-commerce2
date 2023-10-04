@@ -1,19 +1,18 @@
-<?php 
+<?php
 
-session_start();  
+session_start();
 
-if( !empty($_SESSION['cart']) && isset($_POST['checkout'])) {
+if (!empty($_SESSION['cart']) && isset($_POST['checkout'])) {
     // let user in
 
 
 
 
- //send user to home page   
-}else{
+    //send user back to home page   
+} else {
 
 
-header('Location: index.php');
-
+    header('Location: index.php');
 }
 
 ?>
@@ -28,50 +27,47 @@ header('Location: index.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>checkout</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
-<!-- THE NAVIGATION BAR -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top py-3 ">
-    <div class="container">
-        <img src="https://logos.textgiraffe.com/logos/logo-name/Precious-designstyle-smoothie-m.png" class="logo"
-            width="100px" height="30px" alt="logo">
-        <div class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+    <!-- THE NAVIGATION BAR -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top py-3 ">
+        <div class="container">
+            <img src="https://logos.textgiraffe.com/logos/logo-name/Precious-designstyle-smoothie-m.png" class="logo" width="100px" height="30px" alt="logo">
+            <div class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </div>
+            <div class="collapse navbar-collapse nav-buttons" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="shop.html">shop</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Blog</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact Us</a>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+                        <a href="account.html"><i class="fa-solid fa-user"></i></a>
+
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="collapse navbar-collapse nav-buttons" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="shop.html">shop</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Blog</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Contact Us</a>
-                </li>
-
-
-                <li class="nav-item">
-                    <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
-                    <a href="account.html"><i class="fa-solid fa-user"></i></a>
-
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+    </nav>
 
     <!-- checkout -->
 
@@ -82,38 +78,30 @@ header('Location: index.php');
             <hr class="mx-auto">
         </div>
         <div class="mx-auto container">
-            <form id="checkout-form" action= "server/place_order.php" method="POST"> 
+            <form id="checkout-form" action="server/place_order.php" method="POST">
                 <div class="form-group py-2 checkout-small-element">
                     <label for="">Name</label>
                     <input type="text" class="form-control" id="checkout-name" name="name" placeholder="Name" required>
                 </div>
                 <div class="form-group py-2 checkout-small-element">
                     <label for="">Email</label>
-                    <input type="text" class="form-control" id="checkout-email" name="email" placeholder="Email"
-                        required>
+                    <input type="text" class="form-control" id="checkout-email" name="email" placeholder="Email" required>
                 </div>
                 <div class="form-group py-2 checkout-small-element">
                     <label for="">Phone nunber</label>
-                    <input type="tel" class="form-control" id="checkout-phone" name="phone" placeholder="Phone"
-                        required>
+                    <input type="tel" class="form-control" id="checkout-phone" name="phone" placeholder="Phone" required>
                 </div>
-                <!-- <div class="form-group py-2 checkout-small-element">
-                    <label for="">Password</label>
-                    <input type="tel" class="form-control" id="checkout-phone" name="password" placeholder="Password"
-                        required>
-                </div> -->
                 <div class="form-group py-2 checkout-small-element">
                     <label for="">City</label>
                     <input type="text" class="form-control" id="checkout-city" name="city" placeholder="city" required>
                 </div>
                 <div class="form-group py-2 checkout-large-element">
                     <label for="">Address</label>
-                    <input type="text" class="form-control" id="checkout-address" name="address" placeholder="Adress"
-                        required>
+                    <input type="text" class="form-control" id="checkout-address" name="address" placeholder="Adress" required>
                 </div>
                 <div class="form-group py-2 checkout-btn-container">
                     <p>Total amount: $ <?php echo $_SESSION['total']; ?> </p>
-                    <input type="submit" class="btn" id="checkout-btn" name= "place_order" value="Place Order">
+                    <input type="submit" class="btn" id="checkout-btn" name="place_order" value="Place Order">
                 </div>
 
             </form>
@@ -126,8 +114,7 @@ header('Location: index.php');
     <section class="mt-5 py-5 footer">
         <div class="row container mx-auto  pt-5">
             <div class="footer-one col-lg-3 col-md-6 col-sm-12 ">
-                <a href=""><img src="https://logos.textgiraffe.com/logos/logo-name/Precious-designstyle-smoothie-m.png"
-                        width="100px" class="pb-5" alt=""> </a>
+                <a href=""><img src="https://logos.textgiraffe.com/logos/logo-name/Precious-designstyle-smoothie-m.png" width="100px" class="pb-5" alt=""> </a>
                 <p class="pt-1">We provide products for the most affordable prices</p>
             </div>
             <div class="footer-one col-lg-3 col-md-6 col-sm-12">
@@ -167,9 +154,7 @@ header('Location: index.php');
 
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 </body>
 
