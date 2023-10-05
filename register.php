@@ -2,6 +2,11 @@
 
     session_start();
     include('server/connection.php');
+   
+if(isset($_SESSION['logged_in'])){
+    header('location: account.php');
+    exit;
+}
 
     if (isset($_POST['register'])) {
         $name = $_POST['name'];
@@ -40,13 +45,17 @@
                     $_SESSION['user_email'] = $email;
                     $_SESSION['user_name'] = $name;
                     $_SESSION['logged_in'] = true;
+
                     header('Location: account.php?register=Registration Successful');
                     // exit;
+                    //account could not be created---------
+                } else {
+                    header('location: register.php?error=could not create account at the moment');
                 }
             }
         }
-    }
-
+   
+    } 
 
     ?>
 
@@ -132,7 +141,7 @@ Register----------------- -->
                      <input type="submit" class="btn" id="register-btn" name="register" value="Register">
                  </div>
                  <div class="form-group py-2">
-                     <a id="login-url" class="btn">Do you have an account? Login</a>
+                     <a id="login-url" href="login.php" class="btn">Do you have an account? Login</a>
                  </div>
              </form>
          </div>

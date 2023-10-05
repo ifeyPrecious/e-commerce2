@@ -1,6 +1,7 @@
 <?php 
  include('server/connection.php');
-       
+ 
+
        if(isset($_GET['product_id'])) {
 
         $product_id = $_GET['product_id'];
@@ -18,6 +19,7 @@
     header('location:index.php');
 
 }
+
 
 ?>
 

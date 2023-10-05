@@ -1,3 +1,21 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['logged_in'])) {
+    header('location: login.php');
+    exit;
+}
+
+
+ 
+
+
+
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,50 +23,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>register</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top py-3 ">
-		<div class="container">
-		<img src="https://logos.textgiraffe.com/logos/logo-name/Precious-designstyle-smoothie-m.png"
-				width="100px" height="30px" alt="logo">
-			<div class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-				aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</div>
-			<div class="collapse navbar-collapse nav-buttons" id="navbarSupportedContent">
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top py-3 ">
+        <div class="container">
+            <img src="https://logos.textgiraffe.com/logos/logo-name/Precious-designstyle-smoothie-m.png" width="100px" height="30px" alt="logo">
+            <div class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </div>
+            <div class="collapse navbar-collapse nav-buttons" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-					<li class="nav-item">
-						<a class="nav-link" href="index.php">Home</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="shop.php">shop</a>
-					</li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="shop.php">shop</a>
+                    </li>
 
-					<li class="nav-item">
-						<a class="nav-link" href="#">Blog</a>
-					</li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Blog</a>
+                    </li>
 
-					<li class="nav-item">
-						<a class="nav-link" href="contact.php">Contact Us</a>
-					</li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.php">Contact Us</a>
+                    </li>
 
 
-					<li class="nav-item">
-						<a href="cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
-						<a href="account.php"><i class="fa-solid fa-user"></i></a>
+                    <li class="nav-item">
+                        <a href="cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
+                        <a href="account.php"><i class="fa-solid fa-user"></i></a>
 
-					</li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
 
     <!-- Account -->
@@ -58,9 +73,9 @@
                 <h3 class="font-weight-bold">Account info</h3>
                 <hr class="mx-auto">
                 <div class="account-info">
-                    <p>Name :<span>John</span></p>
-                    <p>Email <span>ifeyprecious7@gmail.com</span></p>
-                    <p><a href="" id="orders-btn">Your Orders</a></p>
+                    <p>Name :<span><?php if(isset($_SESSION['user_name'])){ echo $_SESSION['user_name']; }  ?></span></p>
+                    <p>Email <span><?php if(isset($_SESSION['user_email'])){ echo $_SESSION['user_email']; } ?> </span></p>
+                    <p><a href="#orders" id="orders-btn">Your Orders</a></p>
                     <p><a href="" id="logout-btn">Logout</a></p>
                 </div>
             </div>
@@ -74,7 +89,7 @@
                     </div>
                     <div class="form-group">
                         <label for="">Confirm Password</label>
-                        <input type="password" class="form-control" id="account-password-confirm" name="confirmPassword"  placeholder="Password" required>
+                        <input type="password" class="form-control" id="account-password-confirm" name="confirmPassword" placeholder="Password" required>
                     </div>
                     <div class="form-group">
                         <input type="submit" value="Change password" class="btn" id="change-pass-btn">
@@ -86,15 +101,44 @@
 
 
 
+<!-- ORDERS -->
 
+<div class="container orders mt-4 py-3" id="orders" >
+            <h2 class="font-weight-bold text-center">Your Orders</h2>
+            <hr>
+        </div>
+
+        <table class="mt-5 pt-5">
+            <tr>
+                <th>Product</th>
+                <th>Date</th>
+               
+            </tr>
+                <tr>
+                    <td>
+                         
+                </tr>
+        
+
+        </table>
+
+        <!-- Total Amount -->
+        <div class="cart-total">
+            <table>
+              
+                <tr>
+                    <td>Total</td>
+                    <td><?php echo $_SESSION['total']; ?></td>
+                </tr>
+            </table>
+        </div>
 
 
     <!-- footer -->
     <section class="mt-5 py-5 footer">
         <div class="row container mx-auto  pt-5">
             <div class="footer-one col-lg-3 col-md-6 col-sm-12 ">
-                <a href=""><img src="https://logos.textgiraffe.com/logos/logo-name/Precious-designstyle-smoothie-m.png"
-                        width="100px" class="pb-5" alt=""> </a>
+                <a href=""><img src="https://logos.textgiraffe.com/logos/logo-name/Precious-designstyle-smoothie-m.png" width="100px" class="pb-5" alt=""> </a>
                 <p class="pt-1">We provide products for the most affordable prices</p>
             </div>
             <div class="footer-one col-lg-3 col-md-6 col-sm-12">
@@ -133,9 +177,7 @@
     </section>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 </body>
 

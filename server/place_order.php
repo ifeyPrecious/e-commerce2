@@ -59,7 +59,6 @@ include('connection.php');
      header('Location: ../payment.php?order_status=order placed successfully');
 
 
-
    }
  
 
