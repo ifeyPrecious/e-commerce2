@@ -66,7 +66,7 @@ if (isset($_POST['login_btn'])) {
 
             // Verify the password
             if (password_verify($password, $user_hashed_password)) {
-                $_SESSION['user_id'] = $user_id;
+                $_SESSION['user_id'] = $user_id; //to get the id
                 $_SESSION['user_name'] = $user_name;
                 $_SESSION['user_email'] = $user_email;
                 $_SESSION['logged_in'] = true;

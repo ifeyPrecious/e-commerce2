@@ -14,7 +14,7 @@ include('connection.php');
     $address = $_POST['address'];
     $order_cost = $_SESSION['total'];
     $order_status =  "on_hold";
-    $user_id = 1;
+    $user_id = $_SESSION['user_id']; //to get the user id from the register page
     $order_date = date('Y-m-d H:i:s');
   
 
