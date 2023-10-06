@@ -15,6 +15,7 @@ if(isset($_SESSION['logged_in'])){
         $confirmPassword = $_POST['confirmPassword'];
 
         // Password hashing
+        //if password do not match
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
         if ($password !== $confirmPassword) {
@@ -46,7 +47,7 @@ if(isset($_SESSION['logged_in'])){
                     $_SESSION['user_name'] = $name;
                     $_SESSION['logged_in'] = true;
 
-                    header('Location: account.php?register=Registration Successful');
+                    header('Location: account.php?register_success=Registration Successful');
                     // exit;
                     //account could not be created---------
                 } else {
