@@ -350,7 +350,7 @@ hr {
   flex-wrap: 10px;
 }
 .cart th {
-  padding: 5px 10px;
+  padding: 10px 20px;
   color: white;
   background-color: coral;
 }
@@ -406,6 +406,8 @@ hr {
   border-top: 3px solid orangered;
 }
 
+ 
+ 
 /* Style for the cart total section */
 .cart-total {
   display: flex;
@@ -485,12 +487,15 @@ th:last-child {
 #account-form #change-pass-btn{
     color: white;
     background-color: orange;
-}
+}.orderscart
 .account-info #orders-btn,#logout-btn{
     color: orangered;
     text-decoration: none;
 }
 
+ 
+
+ 
 /* checkout-------------------- */
 #checkout-form .checkout-small-element{
  display: inline-block;
@@ -514,3 +519,51 @@ background-color: orangered;
 #contact span{
   color: orangered;
 }
+
+  .orders {
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 10px;
+  
+}
+
+.orders h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.orders table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.orders th,
+.orders td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.orders th {
+  background-color: orangered;
+  color: #fff;
+  text-align: left;
+}
+
+.orders td {
+  color: #555;
+}
+
+.orders .btn {
+  background-color:orangered;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.orders .btn:hover {
+  background-color: orange;
+}  

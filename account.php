@@ -33,7 +33,7 @@ if (isset($_POST['change_password'])) {
         exit;
     } else {
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-        
+
         $stmt = $conn->prepare("UPDATE users SET user_password = ? WHERE user_email = ?");
         $stmt->bind_param('ss', $hashedPassword, $email);
 
@@ -46,8 +46,27 @@ if (isset($_POST['change_password'])) {
         }
     }
 }
+
+
+//get orders=========================
+if (isset($_SESSION['logged_in'])) {
+
+    $user_id  = $_SESSION['user_id'];
+
+    $stmt = $conn->prepare("SELECT * FROM orders WHERE user_id = ? ");
+
+    $stmt->bind_param('i', $user_id);
+
+    $stmt->execute();
+
+    $orders = $stmt->get_result(); //[]
+
+}
+
+
+
 ?>
- 
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -103,9 +122,9 @@ if (isset($_POST['change_password'])) {
     <section class="my-5 py-5">
         <div class="row container mx-auto text-center">
             <div class="text-center mt-3 pt-5 col-lg-6 col-md-12 col-sm-12">
-            <p class="text-center" style="color: green;"><?php if (isset($_GET['login_success'])) {
-                                                                        echo $_GET['login_success'];
-                                                                    }  ?></p>
+                <p class="text-center" style="color: green;"><?php if (isset($_GET['login_success'])) {
+                                                                    echo $_GET['login_success'];
+                                                                }  ?></p>
                 <h3 class="font-weight-bold">Account info</h3>
                 <hr class="mx-auto">
                 <div class="account-info">
@@ -136,7 +155,7 @@ if (isset($_POST['change_password'])) {
                     </div>
                     <div class="form-group">
                         <label for="">Confirm Password</label>
-                        <input type="password" class="form-control" id="account-password-confirm" name="confirmPassword" placeholder="Password" required>
+                        <input type="password" class="form-control" id="account-password-confirm" name="confirmPassword" placeholder="confirm Password" required>
                     </div>
                     <div class="form-group">
                         <input type="submit" value="Change password" name="change_password" class="btn" id="change-pass-btn">
@@ -150,25 +169,50 @@ if (isset($_POST['change_password'])) {
 
     <!-- ORDERS -->
 
-    <div class="container orders mt-4 py-3" id="orders">
-        <h2 class="font-weight-bold text-center">Your Orders</h2>
-        <hr>
-    </div>
+    <section id="orders" class="container orders  my-5 py-3 ">
+        <div class=" mt-2">
+            <h2 class="font-weight-bold text-center">Your Orders</h2>
+            <hr class="mx-auto">
+        </div>
 
-    <table class="mt-5 pt-5">
-        <tr>
-            <th>Product</th>
-            <th>Date</th>
+        <table class="mt-5 pt-5">
+            <tr>
+                <th>Order id</th>
+                <th>Order cost</th>
+                <th>Order status</th>
+                <th>Order date</th>
+                <th>Order details</th>
+            </tr>
 
-        </tr>
-        <tr>
-            <td>Total</td>
-            <td><img src="./assets/imgs/a.jpg" width="200"> </td>
-        </tr>
+            <?php while ($row = $orders->fetch_assoc()) {
+
+            ?>
+                <tr>
+                    <td>
+                        <span> <?php echo $row['order_id'];  ?></span>
+                    </td>
+                    <td>
+                        <span><?php echo $row['order_cost'];  ?></span>
+                    </td>
+                    <td>
+                        <span><?php echo $row['order_status'];   ?></span>
+                    </td>
+                    <td>
+                        <span> <?php echo $row['order_date']; ?> </span>
+                    </td>
+                    <td>
+                        <form action="order_details.php" method="POST">
+                            <input type="hidden" value="<?php echo $row['order_status'];?>" name="order_status">
+                            <input type="hidden" value="<?php echo $row['order_id'];  ?>" name="order_id" >
+                            <input class="btn " type="submit" name="order_details_btn" value="details">
+                        </form>
+                    </td>
 
 
-    </table>
-
+                </tr>
+            <?php } ?>
+        </table>
+    </section>
 
 
     <!-- footer -->

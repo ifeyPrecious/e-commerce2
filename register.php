@@ -14,6 +14,7 @@ if(isset($_SESSION['logged_in'])){
         $password = $_POST['password'];
         $confirmPassword = $_POST['confirmPassword'];
 
+
         // Password hashing
         //if password do not match
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
@@ -26,6 +27,7 @@ if(isset($_SESSION['logged_in'])){
             $error = 'Password is too long';
         } else {
             // Check if email already exists
+
             $stmt1 = $conn->prepare("SELECT count(*) FROM users WHERE user_email = ?");
             $stmt1->bind_param('s', $email);
             $stmt1->execute();
@@ -34,6 +36,7 @@ if(isset($_SESSION['logged_in'])){
             $stmt1->fetch();
 
             //check if a user already registerd with this email
+
             if ($num_rows != 0) {
                 header('location:register.php?error=user with this email already exists');
             } else {
