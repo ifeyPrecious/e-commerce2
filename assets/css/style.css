@@ -231,6 +231,22 @@ hr {
   border: 3px solid orangered;
   margin-left: 47%;
 }
+.product .buy-btn{
+  background-color: orangered;
+  transform: translateY(50px);
+  opacity: 0;
+  transition: 0.3s all;
+  color: white;
+  text-decoration: none;
+}
+.product:hover .buy-btn{
+  transform: translateY(0px);
+  opacity: 1;
+}
+
+h3.mt-5.para{
+margin-left: 0;
+}
 /* banner--------------------- */
 #banner {
   background-image: url("../imgs/b.jpg");
@@ -567,3 +583,45 @@ background-color: orangered;
 .orders .btn:hover {
   background-color: orange;
 }  
+
+/* shop and featured============ */
+ 
+
+ 
+
+
+
+/* Default styles for the sidebar */
+  #search-sidebar {
+  background-color: #f0f0f0;
+  padding: 20px;
+  width: 250px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  overflow-y: auto;
+}  
+
+ 
+#main-content {
+  margin-left: 270px;
+  padding: 20px;
+}
+ 
+ 
+@media (max-width: 768px) {
+  #search-sidebar {
+      width: 100%;  
+      position: relative;  
+      margin-left: 0; 
+      height: auto;  
+  }
+
+  
+  #main-content {
+      margin-left: 0;
+      padding: 20px;
+  }
+ 
+}

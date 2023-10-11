@@ -23,12 +23,7 @@ if (isset($_POST['order_details_btn']) && isset($_POST['order_id'])) {
 }
 
 
-
 ?>
-
-
-
-
 
 
 
@@ -83,9 +78,6 @@ if (isset($_POST['order_details_btn']) && isset($_POST['order_id'])) {
             </div>
         </div>
     </nav>
-
-
-
 
 
 

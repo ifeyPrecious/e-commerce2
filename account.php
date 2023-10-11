@@ -195,7 +195,7 @@ if (isset($_SESSION['logged_in'])) {
                         <span><?php echo $row['order_cost'];  ?></span>
                     </td>
                     <td>
-                        <span><?php echo $row['order_status'];   ?></span>
+                        <span><?php echo $row['order_status'];  ?></span>
                     </td>
                     <td>
                         <span> <?php echo $row['order_date']; ?> </span>
