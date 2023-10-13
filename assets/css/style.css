@@ -607,6 +607,7 @@ background-color: orangered;
 #main-content {
   margin-left: 270px;
   padding: 20px;
+  width: calc(100vw - 250px);
 }
  
  
@@ -622,6 +623,7 @@ background-color: orangered;
   #main-content {
       margin-left: 0;
       padding: 20px;
+      width:calc(100vw - 250px);
   }
  
 }

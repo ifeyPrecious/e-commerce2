@@ -2,7 +2,7 @@
 
 session_start();
 
-if (!empty($_SESSION['cart']) && isset($_POST['checkout'])) {
+if (!empty($_SESSION['cart'])) {
     // let user in
 
 
@@ -77,8 +77,19 @@ if (!empty($_SESSION['cart']) && isset($_POST['checkout'])) {
             <h2 class="form-weight-bold">Check Out</h2>
             <hr class="mx-auto">
         </div>
+
         <div class="mx-auto container">
+
             <form id="checkout-form" action="server/place_order.php" method="POST">
+                <p class="text-center text-danger">
+                    <?php if(isset($_GET['message'])) {echo $_GET['message'];} ?>
+                    <?php if(isset($_GET['message'])) { ?>
+                        
+                        <a  href="login.php" class="btn btn-primary">Login</a>
+                
+                        <?php } ?>
+                </p>
+
                 <div class="form-group py-2 checkout-small-element">
                     <label for="">Name</label>
                     <input type="text" class="form-control" id="checkout-name" name="name" placeholder="Name" required>
