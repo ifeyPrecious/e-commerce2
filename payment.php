@@ -38,10 +38,10 @@ if (isset($_POST['order_pay_btn'])) {
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
+                        <a class="nav-link" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="shop.html">shop</a>
+                        <a class="nav-link" href="shop.php">shop</a>
                     </li>
 
                     <li class="nav-item">
@@ -49,7 +49,7 @@ if (isset($_POST['order_pay_btn'])) {
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact Us</a>
+                        <a class="nav-link" href="contact.php">Contact Us</a>
                     </li>
 
 

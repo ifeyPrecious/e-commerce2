@@ -83,7 +83,7 @@ if (isset($_POST['login_btn'])) {
         }
     } else {
         // Handle the database connection or query error here
-        header('location: login.php?error=Database error');
+        header('location: login.php?error=something went wrong');
         // exit();
     }
 }
