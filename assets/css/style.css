@@ -532,6 +532,8 @@ th:last-child {
   background-color: #f4f4f4;
   padding: 20px;
   border-radius: 10px;
+  overflow-x: scroll;
+
 }
 
 .orders h2 {
@@ -544,6 +546,7 @@ th:last-child {
 .orders table {
   width: 100%;
   border-collapse: collapse;
+
 }
 
 .orders th,
@@ -569,6 +572,13 @@ th:last-child {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.btn-primary{
+  background-color: blue !important;
+}
+.btn-danger{
+  background-color: red !important;
 }
 
 .orders .btn:hover {

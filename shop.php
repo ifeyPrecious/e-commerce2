@@ -2,19 +2,88 @@
 include('server/connection.php');
 
 if (isset($_POST['search'])) {
+
+    //1. determin the page no
+    if (isset($_GET['page_no']) && $_GET['page_no'] != "") {
+        //if user has already entered the page then page number is the one that they selected
+        $page_no = $_GET['page_no'];
+    } else {
+        // if the user just entered the page then the default page is 1
+        $page_no = 1;
+    }
+
     $category = $_POST['category'];
     $price = $_POST['price'];
 
-    // Prepare and execute the SQL query to fetch products based on the user's search criteria
-    $stmt = $conn->prepare("SELECT * FROM products WHERE product_category = ? AND product_price <= ?");
-    $stmt->bind_param("si", $category, $price);
-    $stmt->execute();
-    $products = $stmt->get_result(); // Products that match the search criteria
+    // 2. return number of products
+    $stmt1 = $conn->prepare("SELECT COUNT(*) As total_records FROM products WHERE product_category=? AND product_price = ? ");
+    $stmt1->bind_param('si', $category, $price);
+    $stmt1->execute();
+    $stmt1->bind_result($total_records);
+    $stmt1->store_result();
+    $stmt1->fetch();
+
+
+    //3. products per page
+
+    $total_records_per_page = 8;
+
+    $offset = ($page_no - 1) * $total_records_per_page;
+
+    $previous_page = $page_no - 1;
+    $next_page = $page_no + 1;
+
+    $adjacent = "2";
+    $total_no_of_pages = ceil($total_records / $total_records_per_page);
+
+    //4. get all products
+
+    $stmt2 = $conn->prepare("SELECT * FROM products WHERE product_category = ? AND product_price = ? LIMIT  $offset, $total_records_per_page");
+    $stmt2->bind_param('si', $category, $price);
+    $stmt2->execute();
+    $products = $stmt2->get_result(); //[]
+
+
+
+    //return all product
+
+
 } else {
-    // Return all products if the user didn't perform a search
-    $stmt = $conn->prepare("SELECT * FROM products");
-    $stmt->execute();
-    $products = $stmt->get_result(); // All products
+
+    //1. determine the page no
+    if (isset($_GET['page_no']) && $_GET['page_no'] != "") {
+        //if user has already entered page then then the page no is the one they selected
+        $page_no =  $_GET['page_no'];
+    } else {
+        //if the user just entered the page then the default page is 1
+        $page_no = 1;
+    }
+
+
+    //2. return number of results
+    $stmt1 = $conn->prepare("SELECT COUNT(*) As total_records FROM products");
+    $stmt1->execute();
+    $stmt1->bind_result($total_records);
+    $stmt1->store_result();
+    $stmt1->fetch();
+
+    //3. products per page
+
+    $total_records_per_page = 8;
+
+    $offset = ($page_no - 1) * $total_records_per_page;
+    $previous_page = $page_no - 1;
+    $next_page = $page_no + 1;
+    $adjacent = 2;
+
+    $total_no_of_pages = ceil($total_records / $total_records_per_page);
+
+    //4.    get all products
+    $stmt2 = $conn->prepare("SELECT * FROM products LIMIT $offset, $total_records_per_page");
+    $stmt2->execute();
+    $products = $stmt2->get_result(); //[]
+
+
 }
 ?>
 
@@ -117,8 +186,8 @@ if (isset($_POST['search'])) {
             </div>
 
             <div class="form-group my-3 mx-3">
-        <input type="submit" name="search" class="btn btn-primary" value="Search">
-    </div>
+                <input type="submit" name="search" class="btn btn-primary" value="Search">
+            </div>
         </form>
 
     </aside>
@@ -136,8 +205,8 @@ if (isset($_POST['search'])) {
             </div>
             <div class="row mx-auto container-fluid">
 
-            
-            <?php while ($row = $products->fetch_assoc()) { ?>       
+
+                <?php while ($row = $products->fetch_assoc()) { ?>
 
                     <div onclick="window.location.href='single_product.php';" class="product text-center col-lg-3 col-md-4 col-sm-12  ">
                         <img class="img-fluid" src="./assets/imgs/<?php echo $row['product_image']; ?>" alt="">
@@ -151,7 +220,7 @@ if (isset($_POST['search'])) {
 
                         <h5 class="p-name"><?php echo $row['product_name'];  ?></h5>
                         <h4 class="p-price"><?php echo $row['product_price']; ?></h4>
-                        <a class=" btn buy-btn" href="<?php echo "single_product.php?product_id=".$row['product_id']; ?>" style=" ">Buy now</a>
+                        <a class=" btn buy-btn" href="<?php echo "single_product.php?product_id=" . $row['product_id']; ?>" style=" ">Buy now</a>
                     </div>
 
                 <?php } ?>
@@ -159,13 +228,29 @@ if (isset($_POST['search'])) {
 
                 <nav aria-label="page navigation example">
                     <ul class="pagination mt-5">
-                        <li class="page-item"><a class="page-link" href="#">previous</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">next</a></li>
+                        <?php
+                        if ($page_no > 1) {
+                            echo '<li class="page-item"><a class="page-link" href="shop.php?page_no=' . ($page_no - 1) . '">Previous</a></li>';
+                        }
+
+                        for ($i = max(1, $page_no - $adjacent); $i <= min($page_no + $adjacent, $total_no_of_pages); $i++) {
+                            if ($i == $page_no) {
+                                echo '<li class="page-item active"><a class="page-link" href="shop.php">' . $i . '</a></li>';
+                            } else {
+                                echo '<li class="page-item"><a class="page-link" href="shop.php?page_no=' . $i . '">' . $i . '</a></li>';
+                            }
+                        }
+
+                        if ($page_no < $total_no_of_pages) {
+                            echo '<li class="page-item"><a class="page-link" href="shop.php?page_no=' . ($page_no + 1) . '">Next</a></li>';
+                        }
+                        ?>
                     </ul>
                 </nav>
+
+                <!-- Product Listing Section -->
+               
+                
 
 
             </div>
