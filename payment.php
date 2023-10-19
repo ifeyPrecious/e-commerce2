@@ -77,7 +77,7 @@ if (isset($_POST['order_pay_btn'])) {
                 <p>Total payment: # <?php echo $_SESSION['total'];  ?> </p>
                 <input class="btn btn-primary" type="submit" value="Pay Now">
 
-            <?php } elseif (isset($_POST['order_status']) && $_POST['order_status'] == "on_hold") { ?>
+            <?php } elseif (isset($_POST['order_status']) && $_POST['order_status'] == "not paid") { ?>
 
                 <p>Total payment: # <?php echo $_POST['order_total_price'];  ?></p>
 

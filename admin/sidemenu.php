@@ -8,7 +8,7 @@
                     <li><a href="./orders.php">Orders</a></li>
                     <!-- <li><a href="#">Create Product</a></li> -->
                     <li><a href="account.php">Account</a></li>
-                    <li><a href="add_new_products.php">Add new product </a></li>
+                    <li><a href="add_product.php">Add new product </a></li>
                     <li><a href="#">Help </a></li>
                 </ul>
             </nav>

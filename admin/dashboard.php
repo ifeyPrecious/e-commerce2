@@ -12,8 +12,8 @@
  <body>
      <?php include('sidemenu.php'); ?>
 
- 
- 
+
+
      <main id="main-content">
          <h1>Welcome to the Admin Dashboard</h1>
          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero sed in nihil, natus recusandae similique qui accusantium quis eaque officiis cupiditate illo excepturi, reprehenderit odio tempora! Recusandae id totam sequi!</p>
@@ -24,7 +24,7 @@
                      <div class="custom-card-body">
                          <h5 class="custom-card-title">Products</h5>
                          <p class="custom-card-text">Manage your products here.</p>
-                         <a href="#" class="btn  ">View Products</a>
+                         <a href=" products.php" class=" btn">View Products</a>
                      </div>
                  </div>
              </div>
@@ -48,12 +48,27 @@
                      </div>
                  </div>
              </div>
-             
+
          </div>
      </main>
-    
+
+
+     <!-- <script>
+ const person  = {
+    name: 'ifey',
+    age: 22,
+    hobby: 'coding'
+ };
  
 
+ const keys =   Object.keys(person);
+
+ keys.forEach((key) => {
+    console.log(keys);
+ })
+
+
+     </script> -->
 
 
 

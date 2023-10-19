@@ -154,7 +154,7 @@ function calculateTotalOrderPrice($order_details)
             <?php } ?>
         </table>
 
-        <?php if ($order_status == "on_hold") {  ?>
+        <?php if ($order_status == "not paid") {  ?>
             <form style="float: right;" method="post" action="payment.php">
 
             <input type="hidden" name="order_total_price" value="<?php echo $order_total_price;  ?>">

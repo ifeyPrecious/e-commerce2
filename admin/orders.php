@@ -1,4 +1,11 @@
-<?php include('header.php')  ?>;
+<?php include('header.php');
+
+
+if (!isset($_SESSION['admin_logged_in'])) {
+    header('location: login.php');
+    exit;
+}
+?>;
 
 
 <?php
@@ -14,6 +21,7 @@ if (isset($_GET['page_no']) && $_GET['page_no'] != "") {
     // if the user just entered the page then the default page is 1
     $page_no = 1;
 }
+
 
 
 // 2. return number of products
@@ -45,89 +53,100 @@ $orders = $stmt2->get_result(); //[]
 
 ?>
 
+<body>
+    <?php //include('sidemenu.php'); ?>
 
+    <section id="orders" class="container orders  my-5 py-3 ">
+        <div class=" mt-2">
+            <h2 class="font-weight-bold text-center">Orders</h2>
+ 
 
-<section id="orders" class="container orders  my-5 py-3 ">
-    <div class=" mt-2">
-        <h2 class="font-weight-bold text-center">Your Orders</h2>
-        <hr class="mx-auto">
-    </div>
+    <hr class="mx-auto">
+        </div>
 
-    <table class="mt-5 pt-5">
-        <tr>
-            <th>Order id</th>
-            <th>Order status</th>
-            <th>Order cost</th>
-            <th>User id</th>
-            <th>Order date</th>
-            <th>User phone</th>
-            <th>User address</th>
-            <th>User city</th>
-            <th>Edit</th>
-            <th>Delete</th>
+        <?php if (isset($_GET['order_updated'])) { ?>
+                    <p class="text-center text-success"><?php echo $_GET['order_updated']; ?></p>
+                <?php } ?>
+                <?php if (isset($_GET['order_update_failed'])) { ?>
+                <?php } ?>
 
-        </tr>
-        <?php foreach ($orders as $order) {  ?>
-
+        <table class="mt-5 pt-5">
             <tr>
-                <td>
-                    <span><?php echo $order['order_id']  ?> </span>
-                </td>
-                <td>
-                    <span><?php echo $order['order_status']  ?> </span>
-                </td>
-                <td>
-                    <span><?php echo $order['order_cost']  ?></span>
-                </td>
-                <td>
-                    <span><?php echo $order['user_id']  ?> </span>
-                </td>
-                <td>
-                    <span> <?php echo $order['order_date']  ?> </span>
-                </td>
-                <td>
-                    <span> <?php echo $order['user_phone']  ?></span>
-                </td>
-                <td>
-                    <span><?php echo $order['user_address']  ?> </span>
-                </td>
-                <td>
-                    <span><?php echo $order['user_city']  ?> </span>
-                </td>
-                <td>
-                    <a class="btn btn-primary">Edit</a> </span>
-                </td>
-                <td>
-                    <span> <a class="btn btn-danger" href=""> Delete</a></span>
-                </td>
-
-
+                <th>Order id</th>
+                <th>Order status</th>
+                <th>Order cost</th>
+                <th>User id</th>
+                <th>Order date</th>
+                <th>User phone</th>
+                <th>User address</th>
+                <th>User city</th>
+                <th>Edit</th>
+                <th>Delete</th>
 
             </tr>
-        <?php } ?>
+            <?php foreach ($orders as $order) {  ?>
 
-    </table>
-    <div>
-        <nav aria-label="page navigation example">
-            <ul class="pagination mt-5">
-                <?php
-                if ($page_no > 1) {
-                    echo '<li class="page-item"><a class="page-link" href="orders.php?page_no=' . ($page_no - 1) . '">Previous</a></li>';
-                }
+                <tr>
+                    <td>
+                        <span><?php echo $order['order_id']; ?> </span>
+                    </td>
+                    <td>
+                        <span><?php echo $order['order_status']; ?> </span>
+                    </td>
+                    <td>
+                        <span><?php echo $order['order_cost']; ?></span>
+                    </td>
+                    <td>
+                        <span><?php echo $order['user_id'];  ?> </span>
+                    </td>
+                    <td>
+                        <span> <?php echo $order['order_date'];  ?> </span>
+                    </td>
+                    <td>
+                        <span> <?php echo $order['user_phone']; ?></span>
+                    </td>
+                    <td>
+                        <span><?php echo $order['user_address']; ?> </span>
+                    </td>
+                    <td>
+                        <span><?php echo $order['user_city']; ?> </span>
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" href="edit_order.php?order_id=<?php  echo $order['order_id']; ?> ">Edit</a> </span>
+                    </td>
+                    <td>
+                        <span> <a class="btn btn-danger" href=""> Delete</a></span>
+                    </td>
 
-                for ($i = max(1, $page_no - $adjacent); $i <= min($page_no + $adjacent, $total_no_of_pages); $i++) {
-                    if ($i == $page_no) {
-                        echo '<li class="page-item active"><a class="page-link" href="#">' . $i . '</a></li>';
-                    } else {
-                        echo '<li class="page-item"><a class="page-link" href="orders.php?page_no=' . $i . '">' . $i . '</a></li>';
+
+
+                </tr>
+            <?php }; ?>
+
+        </table>
+        <div>
+            <nav aria-label="page navigation example">
+                <ul class="pagination mt-5">
+                    <?php
+                    if ($page_no > 1) {
+                        echo '<li class="page-item"><a class="page-link" href="orders.php?page_no=' . ($page_no - 1) . '">Previous</a></li>';
                     }
-                }
 
-                if ($page_no < $total_no_of_pages) {
-                    echo '<li class="page-item"><a class="page-link" href="orders.php?page_no=' . ($page_no + 1) . '">Next</a></li>';
-                }
-                ?>
-            </ul>
-        </nav>
-        <a class="btn" href="dashboard.php">Back</a>
-    </div>
+                    for ($i = max(1, $page_no - $adjacent); $i <= min($page_no + $adjacent, $total_no_of_pages); $i++) {
+                        if ($i == $page_no) {
+                            echo '<li class="page-item active"><a class="page-link" href="#">' . $i . '</a></li>';
+                        } else {
+                            echo '<li class="page-item"><a class="page-link" href="orders.php?page_no=' . $i . '">' . $i . '</a></li>';
+                        }
+                    }
+
+                    if ($page_no < $total_no_of_pages) {
+                        echo '<li class="page-item"><a class="page-link" href="orders.php?page_no=' . ($page_no + 1) . '">Next</a></li>';
+                    }
+                    ?>
+                </ul>
+            </nav>
+            <a class="btn" href="dashboard.php">Back</a>
+        </div>
+    </section>
+</body>

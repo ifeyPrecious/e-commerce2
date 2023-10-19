@@ -546,8 +546,9 @@ th:last-child {
 .orders table {
   width: 100%;
   border-collapse: collapse;
-
+ 
 }
+  
 
 .orders th,
 .orders td {
@@ -645,7 +646,7 @@ th:last-child {
   color: white;
   
 }
-
+ 
  
 /* Sidebar styles */
 .custom-nav ul {
