@@ -175,6 +175,7 @@ function calculateTotalPrice() {
                 <th>Sub Total</th>
             </tr>
 
+            <?php if(isset($_SESSION['cart'])) {  ?>
             <?php foreach ($_SESSION['cart'] as $key => $value) { ?>
                 <tr>
                     <td>
@@ -204,6 +205,7 @@ function calculateTotalPrice() {
                     </td>
                 </tr>
             <?php } ?>
+            <?php  } ?>
 
         </table>
 
@@ -213,7 +215,10 @@ function calculateTotalPrice() {
               
                 <tr>
                     <td>Total</td>
+
+                    <?php  if(isset($_SESSION['cart'])) {?>
                     <td><?php echo $_SESSION['total']; ?></td>
+                    <?php }  ?>
                 </tr>
             </table>
         </div>

@@ -54,144 +54,150 @@ $products = $stmt2->get_result(); //[]
 ?>
 
 <body>
-         <p class="text-center"><?php if (isset($_GET['order_updated'])) {  ?></p>
-            <p class="text-center text-success"><?php echo $_GET['order_updated']; ?></p>
+    <p class="text-center"><?php if (isset($_GET['order_updated'])) {  ?></p>
+    <p class="text-center text-success"><?php echo $_GET['order_updated']; ?></p>
+<?php } ?>
+
+<p class="text-center"><?php if (isset($_GET['order_update_failed'])) {  ?></p>
+<p class="text-center text-danger"><?php echo $_GET['order_update_failed']; ?></p>
+<?php } ?>
+
+
+
+
+<?php //include('sidemenu.php'); ?>
+<section id="orders" class=" orders  py-3 ">
+    <div class=" mt-2">
+        <h2 class="font-weight-bold text-center">YOUR PRODUCTS</h2>
+
+        <?php if (isset($_GET['edit_success_message'])) {  ?>
+            <p class="text-center text-success"><?php echo $_GET['edit_success_message'];  ?></p>
         <?php } ?>
 
-        <p class="text-center"><?php if (isset($_GET['order_update_failed'])) {  ?></p>
-        <p class="text-center text-danger"><?php echo $_GET['order_update_failed']; ?></p>
-    <?php } ?>  
+        <?php if (isset($_GET['edit_error_message'])) { ?>
 
-
-    
-         
-    <?php include('sidemenu.php'); ?>
-    <section id="orders" class="container orders  py-3  w-50">
-        <div class=" mt-2">
-            <h2 class="font-weight-bold text-center">YOUR PRODUCTS</h2>
-
-            <?php if (isset($_GET['edit_success_message'])) {  ?>
-                <p class="text-center text-success"><?php echo $_GET['edit_success_message'];  ?></p>
-            <?php } ?>
-
-            <?php if (isset($_GET['edit_error_message'])) { ?>
-
-                <p class="text-center text-danger"> <?php echo $_GET['edit_error_message']  ?></p>
-            <?php } ?>
-
-
-
-            <?php if (isset($_GET['deleted_successfully'])) {  ?>
-                <p class="text-center text-success"><?php echo $_GET['deleted_successfully'];  ?></p>
-            <?php } ?>
-
-            <?php if (isset($_GET['failed_to_delete'])) {  ?>
-                <p class="text-center text-success"><?php echo $_GET['failed_to_delete'];  ?></p>
-            <?php } ?>
-
-
-            
-
-     
-        </div>
-
-        <p class="text-center"><?php if (isset($_GET['product_created'])) {  ?></p>
-            <p class="text-center text-success"><?php echo $_GET['product_created']; ?></p>
+            <p class="text-center text-danger"> <?php echo $_GET['edit_error_message']  ?></p>
         <?php } ?>
 
-        <p class="text-center"><?php if (isset($_GET['products_failed'])) {  ?></p>
-        <p class="text-center text-danger"><?php echo $_GET['products_failed']; ?></p>
+
+
+        <?php if (isset($_GET['deleted_successfully'])) {  ?>
+            <p class="text-center text-success"><?php echo $_GET['deleted_successfully'];  ?></p>
+        <?php } ?>
+
+        <?php if (isset($_GET['failed_to_delete'])) {  ?>
+            <p class="text-center text-success"><?php echo $_GET['failed_to_delete'];  ?></p>
+        <?php } ?>
+
+
+
+
+
+    </div>
+
+    <p class="text-center"><?php if (isset($_GET['product_created'])) {  ?></p>
+    <p class="text-center text-success"><?php echo $_GET['product_created']; ?></p>
+<?php } ?>
+
+<p class="text-center"><?php if (isset($_GET['products_failed'])) {  ?></p>
+<p class="text-center text-danger"><?php echo $_GET['products_failed']; ?></p>
+<?php } ?>
+
+<p class="text-center"><?php if (isset($_GET['images_updated'])) {  ?></p>
+<p class="text-center text-success"><?php echo $_GET['images_updated']; ?></p>
+<?php } ?>
+
+<p class="text-center"><?php if (isset($_GET['images_failed'])) {  ?></p>
+<p class="text-center text-danger"><?php echo $_GET['images_failed']; ?></p>
+<?php } ?>
+
+
+
+<table class="mt-5 pt-5 table-left">
+    <tr>
+        <th>product id</th>
+        <th>Product image</th>
+        <th>product name</th>
+        <th>Product price</th>
+        <th>Product category</th>
+        <th>Product color</th>
+        <th>Special offer</th>
+        <th>Edit products</th>
+        <th>Edit Images</th>
+        <th>Delete</th>
+
+    </tr>
+    <?php foreach ($products as $product) {  ?>
+
+        <tr>
+            <td>
+                <span><?php echo $product['product_id']  ?> </span>
+            </td>
+            <td>
+                <span> <img src="../assets/imgs/<?php echo $product['product_image'];  ?>" width="60" height="66" alt="image"></span>
+            </td>
+            <td>
+                <span><?php echo $product['product_name'];  ?></span>
+            </td>
+            <td>
+                <span><?php echo  "#" . $product['product_price'];  ?> </span>
+            </td>
+            <td>
+                <span> <?php echo $product['product_category'];  ?> </span>
+            </td>
+            <td>
+                <span> <?php echo $product['product_color'];  ?></span>
+            </td>
+            <td>
+                <span><?php echo $product['product_special_offer'] . "% off"; ?></span>
+            </td>
+
+            <td>
+                <a class="btn btn-primary" href="edit_product.php?product_id=<?php echo $product['product_id']; ?>">Edit product</a> </span>
+            </td>
+            <td>
+                <a class="btn btn-warning" href="edit_images.php?product_id=<?php echo $product['product_id']; ?>&product_name=<?php echo $product['product_name']; ?>">Edit images</a>
+            </td>
+
+            <td>
+                <span> <a class="btn btn-danger" href="delete_products.php?product_id=<?php echo $product['product_id'];
+                                                                                        ?>"> Delete</a></span>
+            </td>
+
+
+
+
+
+        </tr>
     <?php } ?>
 
-    <p class="text-center"><?php if (isset($_GET['images_updated'])) {  ?></p>
-            <p class="text-center text-success"><?php echo $_GET['images_updated']; ?></p>
-        <?php } ?>
-        
-        <p class="text-center"><?php if (isset($_GET['images_failed'])) {  ?></p>
-        <p class="text-center text-danger"><?php echo $_GET['images_failed']; ?></p>
-    <?php } ?>
-       
-          
+</table>
 
-        <table class="mt-5 pt-5 table-left">
-            <tr>
-                <th>product id</th>
-                <th>Product image</th>
-                <th>product name</th>
-                <th>Product price</th>
-                <th>Product category</th>
-                <th>Product color</th>
-                <th>Special offer</th>
-                <th>Edit</th>
-                <th>Delete</th>
+<div>
+    <nav aria-label="page navigation example">
+        <ul class="pagination mt-5">
+            <?php
+            if ($page_no > 1) {
+                echo '<li class="page-item"><a class="page-link" href="product.php?page_no=' . ($page_no - 1) . '">Previous</a></li>';
+            }
 
-            </tr>
-            <?php foreach ($products as $product) {  ?>
+            for ($i = max(1, $page_no - $adjacent); $i <= min($page_no + $adjacent, $total_no_of_pages); $i++) {
+                if ($i == $page_no) {
+                    echo '<li class="page-item active"><a class="page-link" href="#">' . $i . '</a></li>';
+                } else {
+                    echo '<li class="page-item"><a class="page-link" href="product.php?page_no=' . $i . '">' . $i . '</a></li>';
+                }
+            }
 
-                <tr>
-                    <td>
-                        <span><?php echo $product['product_id']  ?> </span>
-                    </td>
-                    <td>
-                        <span> <img src="../assets/imgs/<?php echo $product['product_image'];  ?>" width="60" height="66" alt="image"></span>
-                    </td>
-                    <td>
-                        <span><?php echo $product['product_name'];  ?></span>
-                    </td>
-                    <td>
-                        <span><?php echo  "#" . $product['product_price'];  ?> </span>
-                    </td>
-                    <td>
-                        <span> <?php echo $product['product_category'];  ?> </span>
-                    </td>
-                    <td>
-                        <span> <?php echo $product['product_color'];  ?></span>
-                    </td>
-                    <td>
-                        <span><?php echo $product['product_special_offer'] . "% off"; ?></span>
-                    </td>
+            if ($page_no < $total_no_of_pages) {
+                echo '<li class="page-item"><a class="page-link" href="product.php?page_no=' . ($page_no + 1) . '">Next</a></li>';
+            }
+            ?>
+        </ul>
+    </nav>
+    <a class="btn" href="dashboard.php">Back</a> 
+    <a href="add_product.php" class="btn btn-primary">Add more products</a>
+</div>
 
-                    <td>
-                        <a class="btn btn-primary" href="edit_product.php?product_id=<?php echo $product['product_id']; ?>">Edit</a> </span>
-                    </td>
-                    <td>
-                        <span> <a class="btn btn-danger" href="delete_products.php?product_id=<?php echo $product['product_id'];
-                          ?>"> Delete</a></span>
-                    </td>
-
-
-
-
-
-                </tr>
-            <?php } ?>
-
-        </table>
-
-        <div>
-            <nav aria-label="page navigation example">
-                <ul class="pagination mt-5">
-                    <?php
-                    if ($page_no > 1) {
-                        echo '<li class="page-item"><a class="page-link" href="product.php?page_no=' . ($page_no - 1) . '">Previous</a></li>';
-                    }
-
-                    for ($i = max(1, $page_no - $adjacent); $i <= min($page_no + $adjacent, $total_no_of_pages); $i++) {
-                        if ($i == $page_no) {
-                            echo '<li class="page-item active"><a class="page-link" href="#">' . $i . '</a></li>';
-                        } else {
-                            echo '<li class="page-item"><a class="page-link" href="product.php?page_no=' . $i . '">' . $i . '</a></li>';
-                        }
-                    }
-
-                    if ($page_no < $total_no_of_pages) {
-                        echo '<li class="page-item"><a class="page-link" href="product.php?page_no=' . ($page_no + 1) . '">Next</a></li>';
-                    }
-                    ?>
-                </ul>
-            </nav>
-            <a class="btn" href="dashboard.php">Back</a>
-        </div>
-
-    </section>
+</section>
 </body>

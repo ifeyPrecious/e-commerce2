@@ -42,9 +42,9 @@
              <div class="col-md-4 admin">
                  <div class="custom-card mb-4">
                      <div class="custom-card-body">
-                         <h5 class="custom-card-title">Customers</h5>
-                         <p class="custom-card-text">Manage your customer data.</p>
-                         <a href="#" class="btn  ">View Customers</a>
+                         <h5 class="custom-card-title">Account</h5>
+                         <p class="custom-card-text">View your account</p>
+                         <a href="account.php" class="btn  ">View account</a>
                      </div>
                  </div>
              </div>
